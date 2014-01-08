@@ -45,6 +45,10 @@ case "$PACKAGE_MANAGER" in
 		DISTRO="osx"
 		DISTRO_VERSION=$(sw_vers -productVersion)
 		DISTRO_VERSION=${DISTRO_VERSION:0:4} ;;
+	pacman)
+		DISTRO="arch"
+		DISTRO_VERSION=$(ldd --version | head -n 1)
+		DISTRO_VERSION="libc-${DISTRO_VERSION##* }" ;;
 	zypper)
 		DISTRO="opensuse"
 		DISTRO_VERSION=$(cat /etc/SuSE-release | grep VERSION)
