@@ -239,6 +239,7 @@ Options:
 	-s, --src-dir DIR	Directory to download source-code into
 	-r, --rubies-dir DIR	Directory that contains other installed Rubies
 	-i, --install-dir DIR	Directory to install Ruby into
+	-b, --binary		Install a precompiled Ruby binary instead of compiling
 	-j, --jobs JOBS		Number of jobs to run in parallel when compiling
 	-p, --patch FILE	Patch to apply to the Ruby source-code
 	-M, --mirror URL	Alternate mirror to download the Ruby archive from
@@ -284,6 +285,10 @@ function parse_options()
 			-s|--src-dir)
 				SRC_DIR="$2"
 				shift 2
+				;;
+			-b|--binary)
+				BINARY_INSTALL=1
+				shift
 				;;
 			-j|--jobs|-j+([0-9])|--jobs=+([0-9]))
 				MAKE_OPTS+=("$1")
