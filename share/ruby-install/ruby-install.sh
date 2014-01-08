@@ -21,6 +21,42 @@ elif command -v pacman  >/dev/null; then PACKAGE_MANAGER="pacman"
 fi
 
 #
+# Auto-detect the distro, distro version and architecture.
+#
+case "$PACKAGE_MANAGER" in
+	apt)
+		if [[ -e "/etc/lsb-release" ]]; then DISTRO="ubuntu"
+		elif [[ -e "/etc/debian_release" ]]; then DISTRO="debian"
+		else DISTRO=""
+		fi
+
+		DISTRO_VERSION=$(lsb_release -rs) ;;
+	yum)
+		if [[ -e "/etc/fedora-release" ]]; then
+			DISTRO="fedora"
+			DISTRO_VERSION=$(lsb_release -rs)
+		elif [[ -e "/etc/redhat-release" ]]; then
+			DISTRO="centos"
+			DISTRO_VERSION=$(cat /etc/redhat-release | cut -d" " -f3)
+		else
+			DISTRO=""
+		fi ;;
+	brew|port)
+		DISTRO="osx"
+		DISTRO_VERSION=$(sw_vers -productVersion)
+		DISTRO_VERSION=${DISTRO_VERSION:0:4} ;;
+	zypper)
+		DISTRO="opensuse"
+		DISTRO_VERSION=$(cat /etc/SuSE-release | grep VERSION)
+		DISTRO_VERSION=${DISTRO_VERSION##* } ;;
+	*)
+		DISTRO=""
+		DISTRO_VERSION="" ;;
+esac
+
+ARCHITECTURE=$(uname -m)
+
+#
 # Auto-detect the downloader.
 #
 if   command -v wget >/dev/null; then DOWNLOADER="wget"

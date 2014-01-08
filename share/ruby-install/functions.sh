@@ -38,6 +38,16 @@ function install_deps()
 function install_optional_deps() { return; }
 
 #
+# Setup Ruby environment variables.
+#
+function setup_ruby() { return; }
+
+#
+# Setup Ruby binary environment variables.
+#
+function setup_binary() { return; }
+
+#
 # Download the Ruby archive
 #
 function download_ruby()

@@ -25,6 +25,12 @@ if [[ ! $NO_INSTALL_DEPS -eq 1 ]]; then
 	install_deps || fail "Installing dependencies failed!"
 fi
 
+if [[ ! $BINARY_INSTALL -eq 1 ]]; then
+	setup_ruby || fail "Setup of $RUBY $RUBY_VERSION failed!"
+else
+	setup_binary || fail "Setup of $RUBY $RUBY_VERSION binary failed!"
+fi
+
 if [[ ! $NO_DOWNLOAD -eq 1 ]]; then
 	download_ruby || fail "Download of $RUBY_URL failed!"
 fi
@@ -37,9 +43,11 @@ extract_ruby   || fail "Unpacking of $RUBY_ARCHIVE failed!"
 download_patches || fail "Fetching patches $PATCHES failed!"
 apply_patches  || fail "Patching $RUBY $RUBY_VERSION failed!"
 cd "$SRC_DIR/$RUBY_SRC_DIR"
-configure_ruby || fail "Configuration of $RUBY $RUBY_VERSION failed!"
-compile_ruby   || fail "Compiling $RUBY $RUBY_VERSION failed!"
-install_ruby   || fail "Installation of $RUBY $RUBY_VERSION failed!"
+if [[ ! $BINARY_INSTALL -eq 1 ]]; then
+	configure_ruby || fail "Configuration of $RUBY $RUBY_VERSION failed!"
+	compile_ruby   || fail "Compiling $RUBY $RUBY_VERSION failed!"
+	install_ruby   || fail "Installation of $RUBY $RUBY_VERSION failed!"
+fi
 post_install   || fail "Post-install tasks failed!"
 
 log "Successfully installed $RUBY $RUBY_VERSION into $INSTALL_DIR"
