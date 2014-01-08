@@ -1,4 +1,4 @@
-# ruby-install 1 "Dec 2013" ruby-install "User Manuals"
+# ruby-install 1 "Jan 2014" ruby-install "User Manuals"
 
 ## SYNOPSIS
 
@@ -35,6 +35,9 @@ https://github.com/postmodern/ruby-install#readme
 	Specifies the directory where Ruby will be installed.
 	Defaults to */opt/rubies/$ruby-$version* for root and
 	*~/.rubies/$ruby-$version* for normal users.
+
+`-b`, `--binary`
+	Install a precompiled Ruby binary instead of configuring and compiling.
 
 `-j[`*JOBS*`]`, `--jobs[=`*JOBS*`]`
 	Specifies the number of *make* jobs to run in parallel when compiling
