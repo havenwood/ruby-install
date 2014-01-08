@@ -2,21 +2,14 @@
 
 RUBY_ARCHIVE="ruby-$RUBY_VERSION.tar.bz2"
 RUBY_SRC_DIR="ruby-$RUBY_VERSION"
-
-#
-# Set Ruby installation environment variables.
-#
-function setup_ruby()
-{
-	RUBY_VERSION_FAMILY="${RUBY_VERSION:0:3}"
-	RUBY_MIRROR="${RUBY_MIRROR:-http://cache.ruby-lang.org/pub/ruby}"
-	RUBY_URL="${RUBY_URL:-$RUBY_MIRROR/$RUBY_VERSION_FAMILY/$RUBY_ARCHIVE}"
-}
+RUBY_VERSION_FAMILY="${RUBY_VERSION:0:3}"
+RUBY_MIRROR="${RUBY_MIRROR:-http://cache.ruby-lang.org/pub/ruby}"
+RUBY_URL="${RUBY_URL:-$RUBY_MIRROR/$RUBY_VERSION_FAMILY/$RUBY_ARCHIVE}"
 
 #
 # Set Ruby binary installation environment variables.
 #
-function setup_binary()
+function setup_ruby_bin()
 {
 	if [[ -n $DISTRO && -n $DISTRO_VERSION && -n $ARCHITECTURE ]]; then
 		RUBY_URL="http://rvm.io/binaries$BINARY_BASE_URL/$DISTRO/$DISTRO_VERSION/$ARCHITECTURE/$RUBY_ARCHIVE"

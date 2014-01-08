@@ -45,7 +45,7 @@ function setup_ruby() { return; }
 #
 # Setup Ruby binary environment variables.
 #
-function setup_binary() { return; }
+function setup_ruby_bin() { return; }
 
 #
 # Download the Ruby archive
