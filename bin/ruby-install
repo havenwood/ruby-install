@@ -9,6 +9,11 @@ if [[ $# -eq 0 ]]; then
 	exit
 fi
 
+if [[ $# -eq 1 && ! $BINARY_INSTALL -eq 1 ]]; then
+	known_bin_rubies
+	exit
+fi
+
 parse_options "$@" || exit $?
 load_ruby          || exit $?
 

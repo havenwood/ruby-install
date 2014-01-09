@@ -270,6 +270,18 @@ function known_rubies()
 }
 
 #
+#
+#
+function known_bin_rubies()
+{
+	echo "Known binary ruby versions on this platform:"
+	echo "  ruby:"
+
+	RUBY_BIN_PATH="$DISTRO/$DISTRO_VERSION/$ARCHITECTURE"
+	cat "$RUBY_INSTALL_DIR/ruby/md5/$RUBY_BIN_PATH/md5.txt" | sed -e 's/^/    /'
+}
+
+#
 # Prints usage information for ruby-install.
 #
 function usage()
