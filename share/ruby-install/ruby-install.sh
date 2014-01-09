@@ -278,7 +278,7 @@ function known_bin_rubies()
 	echo "  ruby:"
 
 	RUBY_BIN_PATH="$DISTRO/$DISTRO_VERSION/$ARCHITECTURE"
-	cat "$RUBY_INSTALL_DIR/ruby/md5/$RUBY_BIN_PATH/md5.txt" | sed -e 's/^/    /'
+	cat "$RUBY_INSTALL_DIR/ruby/bin/$RUBY_BIN_PATH/versions.txt" | sed -e 's/^/    /'
 }
 
 #

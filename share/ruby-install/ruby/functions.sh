@@ -15,7 +15,7 @@ function setup_ruby_bin()
 		RUBY_BIN_PATH="$DISTRO/$DISTRO_VERSION/$ARCHITECTURE"
 		RUBY_SRC_URL="$RUBY_URL"
 		RUBY_URL="http://rvm.io/binaries/$RUBY_BIN_PATH/$RUBY_ARCHIVE"
-		RUBY_MD5=$(fetch "ruby/md5/$RUBY_BIN_PATH/md5" "$RUBY_ARCHIVE")
+		RUBY_MD5=$(fetch "ruby/bin/$RUBY_BIN_PATH/md5.txt" "$RUBY_ARCHIVE")
 		RUBY_ARCHIVE="${RUBY_ARCHIVE%%-*}-bin-${RUBY_ARCHIVE##*-}"
 	else
 		fall_back_to_source
