@@ -1,0 +1,13 @@
+ruby-1.9.3-p286.tar.bz2:  f53728e7ef82a7c2c6dfdb21202f2376
+ruby-1.9.3-p327.tar.bz2:  b3151790549e71091793b03d4c7914b3
+ruby-1.9.3-p362.tar.bz2:  de7ea0c9966b415a165b6e9b4ae2c97c
+ruby-1.9.3-p374.tar.bz2:  75357314100fc4a777c64c5606a3e867
+ruby-1.9.3-p392.tar.bz2:  d0fbe4cf69cbe52a4e82e458fd6f06aa
+ruby-1.9.3-p429.tar.bz2:  85919f00c561c46f1ded9deb59847421
+ruby-1.9.3-p448.tar.bz2:  8bebaa3b919474a61efe3e8cdb2fd84c
+ruby-1.9.3-p484.tar.bz2:  f28d8413f9db17f8d6dddd91ba80d17a
+ruby-2.0.0-p0.tar.bz2:    b6b1bf6f8b54d8f9eec7cb6a36771f0e
+ruby-2.0.0-p195.tar.bz2:  2310177bc3cd69a2bf193a052561ccf3
+ruby-2.0.0-p247.tar.bz2:  0ea8658f766262ddc6c2492de4e3fccf
+ruby-2.0.0-p353.tar.bz2:  6456f508884c4f746e127acfc51c60bf
+ruby-2.1.0.tar.bz2:       905877bba0068e5c112e06248d9ccbde

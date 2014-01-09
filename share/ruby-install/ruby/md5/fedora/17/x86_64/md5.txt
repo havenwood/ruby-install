@@ -1,0 +1,4 @@
+ruby-1.9.3-p429.tar.bz2:  e8b54fd757dfd0ff485113be66b2088d
+ruby-1.9.3-p448.tar.bz2:  32deef7f911a26115175cd8f82ed8f4e
+ruby-2.0.0-p195.tar.bz2:  aed98505973fd86021baa52310232537
+ruby-2.0.0-p247.tar.bz2:  b3327c1ee2bf46c915e4238a6ce5eebf
