@@ -45,6 +45,8 @@ if [[ ! $BINARY_INSTALL -eq 1 ]]; then
 	configure_ruby || fail "Configuration of $RUBY $RUBY_VERSION failed!"
 	compile_ruby   || fail "Compiling $RUBY $RUBY_VERSION failed!"
 	install_ruby   || fail "Installation of $RUBY $RUBY_VERSION failed!"
+else
+	install_ruby_bin || fail "Installation of $RUBY $RUBY_VERSION binary failed!"
 fi
 post_install   || fail "Post-install tasks failed!"
 

@@ -7,14 +7,16 @@ RUBY_MIRROR="${RUBY_MIRROR:-http://cache.ruby-lang.org/pub/ruby}"
 RUBY_URL="${RUBY_URL:-$RUBY_MIRROR/$RUBY_VERSION_FAMILY/$RUBY_ARCHIVE}"
 
 #
-# Set Ruby binary installation environment variables.
+# Setup Ruby binary installation environment variables.
 #
 function setup_ruby_bin()
 {
 	if [[ -n $DISTRO && -n $DISTRO_VERSION && -n $ARCHITECTURE ]]; then
-		RUBY_URL="http://rvm.io/binaries$BINARY_BASE_URL/$DISTRO/$DISTRO_VERSION/$ARCHITECTURE/$RUBY_ARCHIVE"
+		RUBY_BIN_PATH="$DISTRO/$DISTRO_VERSION/$ARCHITECTURE"
+		RUBY_URL="http://rvm.io/binaries/$RUBY_BIN_PATH/$RUBY_ARCHIVE"
+		RUBY_MD5=$(fetch "ruby/md5/$RUBY_BIN_PATH/md5" "$RUBY_ARCHIVE")
 	else
-		fail "No binaries found for your distro/architecture."
+		return 1
 	fi
 }
 
@@ -41,6 +43,15 @@ function compile_ruby()
 {
 	log "Compiling ruby $RUBY_VERSION ..."
 	make "${MAKE_OPTS[@]}"
+}
+
+#
+# Installs Ruby binary into $INSTALL_DIR.
+#
+function install_ruby_bin()
+{
+	log "Installing ruby $RUBY_VERSION ..."
+	mv "$SRC_DIR/$RUBY_SRC_DIR" "$INSTALL_DIR"
 }
 
 #
