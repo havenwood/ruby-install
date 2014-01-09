@@ -25,12 +25,15 @@ fi
 #
 case "$PACKAGE_MANAGER" in
 	apt)
-		if [[ -e "/etc/lsb-release" ]]; then DISTRO="ubuntu"
-		elif [[ -e "/etc/debian_release" ]]; then DISTRO="debian"
-		else DISTRO=""
-		fi
+		DISTRO_VERSION=$(lsb_release -rs)
 
-		DISTRO_VERSION=$(lsb_release -rs) ;;
+		if [[ -e "/etc/lsb-release" ]]; then
+			DISTRO="ubuntu"
+		elif [[ -e "/etc/debian_release" ]]; then
+			DISTRO="debian"
+			DISTRO_VERSION=${DISTRO_VERSION%%.*}
+		else DISTRO=""
+		fi ;;
 	yum)
 		if [[ -e "/etc/fedora-release" ]]; then
 			DISTRO="fedora"
@@ -38,6 +41,7 @@ case "$PACKAGE_MANAGER" in
 		elif [[ -e "/etc/redhat-release" ]]; then
 			DISTRO="centos"
 			DISTRO_VERSION=$(cat /etc/redhat-release | cut -d" " -f3)
+			DISTRO_VERSION=${DISTRO_VERSION%%.*}
 		else
 			DISTRO=""
 		fi ;;
