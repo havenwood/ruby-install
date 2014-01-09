@@ -17,7 +17,9 @@ function setup_ruby_bin()
 		RUBY_MD5=$(fetch "ruby/md5/$RUBY_BIN_PATH/md5" "$RUBY_ARCHIVE")
 		RUBY_ARCHIVE="${RUBY_ARCHIVE%%-*}-bin-${RUBY_ARCHIVE##*-}"
 	else
-		return 1
+		warn "Unable to locate a ruby binary for your platform."
+		log "Proceeding to compile ruby $RUBY_VERSION from source."
+		BINARY_INSTALL=0
 	fi
 }
 
