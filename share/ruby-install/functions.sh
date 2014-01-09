@@ -57,6 +57,11 @@ function download_ruby()
 }
 
 #
+# Fall back to compiling from source if binary is unavailable.
+#
+function fall_back_to_source() { return; }
+
+#
 # Verifies the Ruby archive matches a checksum.
 #
 function verify_ruby()

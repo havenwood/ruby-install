@@ -9,6 +9,7 @@ RUBIES=(ruby jruby rubinius maglev)
 PATCHES=()
 CONFIGURE_OPTS=()
 MAKE_OPTS=()
+ARCHITECTURE=$(uname -m)
 
 #
 # Auto-detect the package manager.
@@ -61,8 +62,6 @@ case "$PACKAGE_MANAGER" in
 		DISTRO=""
 		DISTRO_VERSION="" ;;
 esac
-
-ARCHITECTURE=$(uname -m)
 
 #
 # Auto-detect the downloader.
@@ -283,7 +282,7 @@ Options:
 	-s, --src-dir DIR	Directory to download source-code into
 	-r, --rubies-dir DIR	Directory that contains other installed Rubies
 	-i, --install-dir DIR	Directory to install Ruby into
-	-b, --binary		Install a precompiled Ruby binary instead of compiling
+	-b, --binary		Install a precompiled Ruby binary if available
 	-j, --jobs JOBS		Number of jobs to run in parallel when compiling
 	-p, --patch FILE	Patch to apply to the Ruby source-code
 	-M, --mirror URL	Alternate mirror to download the Ruby archive from

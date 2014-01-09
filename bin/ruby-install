@@ -30,7 +30,11 @@ if [[ $BINARY_INSTALL -eq 1 ]]; then
 fi
 
 if [[ ! $NO_DOWNLOAD -eq 1 ]]; then
-	download_ruby || fail "Download of $RUBY_URL failed!"
+	if [[ ! $BINARY_INSTALL -eq 1 ]]; then
+		download_ruby || fail "Download of $RUBY_URL failed!"
+	else
+		download_ruby || fall_back_to_source
+	fi
 fi
 
 if [[ ! $NO_VERIFY -eq 1 ]]; then

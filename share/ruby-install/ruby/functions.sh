@@ -13,14 +13,27 @@ function setup_ruby_bin()
 {
 	if [[ -n $DISTRO && -n $DISTRO_VERSION && -n $ARCHITECTURE ]]; then
 		RUBY_BIN_PATH="$DISTRO/$DISTRO_VERSION/$ARCHITECTURE"
+		RUBY_SRC_URL="$RUBY_URL"
 		RUBY_URL="http://rvm.io/binaries/$RUBY_BIN_PATH/$RUBY_ARCHIVE"
 		RUBY_MD5=$(fetch "ruby/md5/$RUBY_BIN_PATH/md5" "$RUBY_ARCHIVE")
 		RUBY_ARCHIVE="${RUBY_ARCHIVE%%-*}-bin-${RUBY_ARCHIVE##*-}"
 	else
-		warn "Unable to locate a ruby binary for your platform."
-		log "Proceeding to compile ruby $RUBY_VERSION from source."
-		BINARY_INSTALL=0
+		fall_back_to_source
 	fi
+}
+
+#
+# Fall back to compiling from source if binary is unavailable.
+#
+function fall_back_to_source()
+{
+	warn "Unable to locate a ruby binary for your platform."
+	log "Proceeding to compile ruby $RUBY_VERSION from source."
+
+	BINARY_INSTALL=0
+	RUBY_URL="$RUBY_SRC_URL"
+
+	download_ruby || fail "Download of $RUBY_URL failed!"
 }
 
 #
