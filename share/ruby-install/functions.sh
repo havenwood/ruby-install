@@ -55,13 +55,41 @@ function verify_ruby()
 {
 	local algorithm
 
-	log "Verifying $ruby_archive ..."
+	log "Verifying checksums for $ruby_archive ..."
 
-	for algorithm in md5 sha1 sha256 sha512; do
-		verify_checksum "$algorithm" \
-				"$src_dir/$ruby_archive" \
-			        "$ruby_dir/checksums.$algorithm" || return $?
-	done
+	if [[ -n "$checksums" ]]; then
+		for checksum in "${checksums[@]}"; do
+			case "${#checksum}" in
+				32)	algorithm="md5" ;;
+				40)	algorithm="sha1" ;;
+				64)	algorithm="sha256" ;;
+				128)	algorithm="sha512" ;;
+				*)
+					error "Unable to detect algorithm for checksum length of "${#checksum}" ..."
+					return 1
+					;;
+			esac
+
+			log "Verifying $algorithm checksum ..."
+
+			local actual_checksum="$(compute_checksum "$algorithm" "$src_dir/$ruby_archive")"
+
+			if [[ "$actual_checksum" != "$checksum" ]]; then
+				error "Invalid $algorithm checksum for $src_dir/$ruby_archive"
+				error "  expected: $checksum"
+				error "  actual:   $actual_checksum"
+				return 1
+			fi
+		done
+	else
+		for algorithm in md5 sha1 sha256 sha512; do
+			log "Verifying $algorithm checksum ..."
+
+			verify_checksum "$algorithm" \
+					"$src_dir/$ruby_archive" \
+					"$ruby_dir/checksums.$algorithm" || return $?
+		done
+	fi
 }
 
 #

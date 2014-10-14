@@ -9,6 +9,7 @@ source "$ruby_install_dir/versions.sh"
 
 rubies=(ruby jruby rbx maglev mruby)
 patches=()
+checksums=()
 configure_opts=()
 make_opts=()
 
@@ -286,8 +287,8 @@ function parse_options()
 				ruby_url="$2"
 				shift 2
 				;;
-			-m|--md5)
-				ruby_md5="$2"
+			-m|--md5|--sha1|--sha256|--sha512)
+			  checksums+=("$2")
 				shift 2
 				;;
 			--no-download)
