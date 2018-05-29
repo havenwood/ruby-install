@@ -10,6 +10,7 @@ function test_list_rubies()
 	assertTrue "did not include jruby" '[[ "$output" == *jruby:* ]]'
 	assertTrue "did not include rbx" '[[ "$output" == *rbx:* ]]'
 	assertTrue "did not include mruby" '[[ "$output" == *mruby:* ]]'
+	assertTrue "did not include truffleruby" '[[ "$output" == *truffleruby:* ]]'
 }
 
 SHUNIT_PARENT=$0 . $SHUNIT2
